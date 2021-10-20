@@ -20,23 +20,69 @@
 
 .start__button {
   padding: 10px 20px;
-  background-color: crimson;
-  border: none;
-  color: #fff;
+  border: 2px solid crimson;
+  color: crimson;
   font-size: 1.2rem;
+  background-color: transparent;
+  cursor: pointer;
   text-transform: uppercase;
+}
+
+.welcome__inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.welcome__start {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.username__input {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1.2rem;
 }
 
 /* END WELCOME */
 
 /* SHIP */
 
+.ship__container {
+  padding: 5px 0;
+}
+
 .ship__square {
   width: 40px;
   height: 40px;
-  background-color: crimson;
-  display: inline-block;
-  border: 1px solid chocolate;
+  background-color: #4f86b3;
+  border: 1px solid #ffffff2a;
+}
+
+.ship {
+  background-color: #88a7c0;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+}
+
+.ship.is-selecting {
+  background-color: #88a7c0;
+}
+
+.ship:hover {
+  background-color: #bad1e4;
+  cursor: pointer;
+}
+
+.ship__name {
+  text-transform: capitalize;
+  padding-bottom: 10px;
 }
 
 /* END SHIP */
@@ -48,9 +94,25 @@
   flex-wrap: wrap;
 }
 
-.board__square {
+.square {
   width: 40px;
   height: 40px;
-  background-color: green;
-  border: 1px solid firebrick;
+  background-color: #f3f3f3;
+  border: 1px solid #a0a0a0;
+}
+
+.square.ship {
+  background-color: gray;
+}
+
+.square.hit {
+  background-color: orange;
+}
+
+.square.miss {
+  background-color: aqua;
+}
+
+.square.sink {
+  background-color: red;
 }

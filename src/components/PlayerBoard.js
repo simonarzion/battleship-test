@@ -1,48 +1,51 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { PropTypes } from 'prop-types';
 
-const PlayerBoard = ({ BOARD, BOARD_STATE }) => {
-  const username = useSelector((state) => state.user);
-  const [coordinates, setCoordinates] = useState({ x: null, y: null });
+const ROWS = 10;
+const COLUMNS = 10;
+const BOARD = ROWS * COLUMNS;
 
-  const board = new Array(BOARD).fill(BOARD_STATE.empty);
+const PlayerBoard = () => {
+  const states = useSelector((state) => state);
+  let x;
+  let y;
 
-  const indexToCoordinates = (i) => {
-    setCoordinates({ x: i % 10, y: Math.floor(i / 10) });
+  const getCoordinates = (index) => {
+    x = index % 10;
+    y = Math.floor(index / 10);
   };
 
-  const coordinatesToIndex = () => {
-    console.log('index: ', coordinates.y * 10 + coordinates.x, board);
+  const layout = new Array(BOARD).fill('empty');
+
+  const getIndex = (index) => {
+    getCoordinates(index);
+    const i = y * 10 + x;
+    console.log(layout.at(2));
+    console.log(layout[i]);
+    console.log(layout);
   };
 
-  coordinatesToIndex();
+  const handleMouseMove = (index) => {
+    getIndex(index);
+  };
 
   return (
     <div>
-      <h3>{username}</h3>
+      {states.status !== 'welcome' && <h3>{states.user}</h3>}
 
       <div className='board'>
-        {board.map((b, i) => (
+        {layout.map((square, index) => (
+          // eslint-disable-next-line react/no-array-index-key
           <div
-            key={i}
-            className={`board__square ${b}`}
-            role='button'
-            onClick={() => indexToCoordinates(i)}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            className={`square ${square}`}
+            onMouseEnter={() => handleMouseMove(index)}
           />
         ))}
       </div>
     </div>
   );
-};
-
-PlayerBoard.propTypes = {
-  BOARD: PropTypes.number.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  BOARD_STATE: PropTypes.object.isRequired,
 };
 
 export default PlayerBoard;
