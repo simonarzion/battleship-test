@@ -1,13 +1,56 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* GENERAL STYLES */
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+}
+
+/* END GENERAL STYLES */
+
+/* WELCOME */
+
+.start__button {
+  padding: 10px 20px;
+  background-color: crimson;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+/* END WELCOME */
+
+/* SHIP */
+
+.ship__square {
+  width: 40px;
+  height: 40px;
+  background-color: crimson;
+  display: inline-block;
+  border: 1px solid chocolate;
+}
+
+/* END SHIP */
+
+.board {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.board__square {
+  width: 40px;
+  height: 40px;
+  background-color: green;
+  border: 1px solid firebrick;
 }
