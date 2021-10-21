@@ -4,6 +4,7 @@ const actionTypes = {
   SELECT_SHIP: 'SELECT_SHIP',
   DECREASE_SHIP_AMOUNT: 'DECREASE_SHIP_AMOUNT',
   SET_SHIPS_AVAIBLES: 'SET_SHIPS_AVAIBLES',
+  CHANGE_TURN: 'CHANGE_TURN',
 };
 
 export default actionTypes;

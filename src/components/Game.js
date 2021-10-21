@@ -12,6 +12,8 @@ const COLUMNS = 10;
 const Game = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.status);
+  const turn = useSelector((state) => state.turn);
+  const username = useSelector((state) => state.user);
   const [userInput, setUserInput] = useState('');
   const [isHorizontal, setIsHorizontal] = useState(true);
 
@@ -52,6 +54,14 @@ const Game = () => {
           </div>
         )}
       </div>
+
+      {status === 'start' ? (
+        <div>
+          <h4>Playing: {turn ? `${username}` : 'Computer'}</h4>
+        </div>
+      ) : (
+        ''
+      )}
 
       {status === 'welcome' && (
         <ShipsFleet

@@ -14,6 +14,12 @@
   font-size: 2.5rem;
 }
 
+h3 {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
 /* END GENERAL STYLES */
 
 /* WELCOME */
