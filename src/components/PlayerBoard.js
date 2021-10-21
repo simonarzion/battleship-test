@@ -24,12 +24,14 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
     for (let j = 0; j < states.ship?.spaces; j += 1) {
       if (states.ship.amount < 1) return;
 
-      if (isHorizontal) {
+      if (isHorizontal && x + states.ship.spaces <= COLUMNS) {
         newLayout[i + j] = 'ship';
         setLayout(newLayout);
-      } else {
+      } else if (!isHorizontal && y + states.ship.spaces <= ROWS) {
         newLayout[i + COLUMNS * j] = 'ship';
         setLayout(newLayout);
+      } else {
+        return;
       }
     }
 
