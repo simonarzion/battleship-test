@@ -54,7 +54,7 @@
 .ships {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .ship__container {
@@ -74,6 +74,12 @@
   width: fit-content;
   padding: 10px;
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.vertical {
+  flex-direction: column;
 }
 
 .is-selecting {

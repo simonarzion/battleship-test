@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { PropTypes } from 'prop-types';
 import { selectShip } from '../redux/actions/ship';
 
-const ShipsFleet = () => {
+const ShipsFleet = ({ setIsHorizontal, isHorizontal }) => {
   const dispatch = useDispatch();
   const states = useSelector((state) => state);
   const handleClick = (ship) => {
@@ -12,14 +12,16 @@ const ShipsFleet = () => {
   };
 
   const handleOrientation = () => {
-    console.log(states.ship, states);
+    setIsHorizontal(!isHorizontal);
+    console.log(isHorizontal);
   };
 
   return (
     <div className='ships'>
       <button type='button' onClick={handleOrientation}>
-        {!states.ship.direction ? 'horizontal' : 'vertical'}
+        {isHorizontal ? 'switch to vertical' : 'switch to horizontal'}
       </button>
+
       {states.shipsAvaibles.map((ship) => {
         const { name, amount } = ship;
         const squares = new Array(ship.spaces).fill('space');
@@ -34,7 +36,7 @@ const ShipsFleet = () => {
                 states.ship.name === name && states.ship.amount > 0
                   ? 'is-selecting'
                   : ''
-              } `}
+              } ${!isHorizontal ? 'vertical' : ''}`}
               onClick={() => handleClick(ship)}
               onKeyPress={() => handleClick(ship)}
             >
@@ -48,6 +50,11 @@ const ShipsFleet = () => {
       })}
     </div>
   );
+};
+
+ShipsFleet.propTypes = {
+  setIsHorizontal: PropTypes.func.isRequired,
+  isHorizontal: PropTypes.bool.isRequired,
 };
 
 export default ShipsFleet;

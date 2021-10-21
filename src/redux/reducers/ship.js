@@ -5,7 +5,7 @@ const initialState = {
   name: null,
   amount: null,
   spaces: null,
-  direction: 'horizontal',
+  isHorizontal: true,
 };
 
 const shipReducer = (state = initialState, action) => {

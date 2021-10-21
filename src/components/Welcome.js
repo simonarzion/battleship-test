@@ -8,6 +8,7 @@ import ShipsFleet from './ShipsFleet';
 const Welcome = () => {
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState('');
+  const [isHorizontal, setIsHorizontal] = useState(true);
 
   const handleChange = (e) => {
     const key = e.target.value;
@@ -18,7 +19,7 @@ const Welcome = () => {
   return (
     <div className='welcome'>
       <div className='welcome__inner'>
-        <PlayerBoard />
+        <PlayerBoard isHorizontal={isHorizontal} />
 
         <div className='welcome__start'>
           <input
@@ -39,7 +40,10 @@ const Welcome = () => {
         </div>
       </div>
 
-      <ShipsFleet />
+      <ShipsFleet
+        setIsHorizontal={setIsHorizontal}
+        isHorizontal={isHorizontal}
+      />
     </div>
   );
 };
