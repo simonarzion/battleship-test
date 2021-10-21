@@ -7,10 +7,6 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
   // eslint-disable-next-line no-unused-vars
   const [layout, setLayout] = useState(new Array(ROWS * COLUMNS).fill('empty'));
 
-  const handleClick = (index) => {
-    console.log(index);
-  };
-
   return (
     <div>
       <h3>Computer</h3>
@@ -20,7 +16,6 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             className={`square ${square}`}
-            onClick={() => handleClick(index)}
           />
         ))}
       </div>

@@ -13,7 +13,6 @@ const ShipsFleet = ({ setIsHorizontal, isHorizontal }) => {
 
   const handleOrientation = () => {
     setIsHorizontal(!isHorizontal);
-    console.log(isHorizontal);
   };
 
   return (

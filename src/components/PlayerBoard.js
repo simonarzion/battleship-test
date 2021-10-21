@@ -24,8 +24,6 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
     for (let j = 0; j < states.ship?.spaces; j += 1) {
       if (states.ship.amount < 1) return;
 
-      console.log(newLayout[i + j]);
-
       if (isHorizontal && x + states.ship.spaces <= COLUMNS) {
         if (newLayout[i + j] === 'ship') return;
         newLayout[i + j] = 'ship';
@@ -36,8 +34,6 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
         return;
       }
     }
-
-    console.log(newLayout);
 
     setLayout(newLayout);
     dispatch(decreaseShipAmount());
