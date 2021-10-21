@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 * {
   padding: 0;
@@ -52,6 +52,20 @@
 /* SHIP */
 
 .ships {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.switch__button {
+  padding: 10px 20px;
+  text-transform: capitalize;
+  font-weight: 700;
+  background-color: crimson;
+  border: 0;
+  color: #fff;
+}
+
+.ships__container {
   display: flex;
   justify-content: center;
   align-items: flex-start;

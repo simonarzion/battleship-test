@@ -18,36 +18,42 @@ const ShipsFleet = ({ setIsHorizontal, isHorizontal }) => {
 
   return (
     <div className='ships'>
-      <button type='button' onClick={handleOrientation}>
+      <button
+        className='switch__button'
+        type='button'
+        onClick={handleOrientation}
+      >
         {isHorizontal ? 'switch to vertical' : 'switch to horizontal'}
       </button>
 
-      {states.shipsAvaibles.map((ship) => {
-        const { name, amount } = ship;
-        const squares = new Array(ship.spaces).fill('space');
+      <div className='ships__container'>
+        {states.shipsAvaibles.map((ship) => {
+          const { name, amount } = ship;
+          const squares = new Array(ship.spaces).fill('space');
 
-        return (
-          <div key={name} className='ship__container'>
-            <h3 className='ship__name'>
-              {name} x{amount}
-            </h3>
-            <div
-              className={`ship ${
-                states.ship.name === name && states.ship.amount > 0
-                  ? 'is-selecting'
-                  : ''
-              } ${!isHorizontal ? 'vertical' : ''}`}
-              onClick={() => handleClick(ship)}
-              onKeyPress={() => handleClick(ship)}
-            >
-              {squares.map((s, i) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={i} className='ship__square' />
-              ))}
+          return (
+            <div key={name} className='ship__container'>
+              <h3 className='ship__name'>
+                {name} x{amount}
+              </h3>
+              <div
+                className={`ship ${
+                  states.ship.name === name && states.ship.amount > 0
+                    ? 'is-selecting'
+                    : ''
+                } ${!isHorizontal ? 'vertical' : ''}`}
+                onClick={() => handleClick(ship)}
+                onKeyPress={() => handleClick(ship)}
+              >
+                {squares.map((s, i) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <div key={i} className='ship__square' />
+                ))}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };
