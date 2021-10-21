@@ -51,8 +51,15 @@
 
 /* SHIP */
 
+.ships {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .ship__container {
   padding: 5px 0;
+  margin: 10px;
 }
 
 .ship__square {
@@ -66,13 +73,11 @@
   background-color: #88a7c0;
   width: fit-content;
   padding: 10px;
-  border-radius: 5px;
-  height: 100%;
   display: flex;
 }
 
-.ship.is-selecting {
-  background-color: #88a7c0;
+.is-selecting {
+  background-color: #bad1e4;
 }
 
 .ship:hover {

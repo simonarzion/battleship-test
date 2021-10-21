@@ -1,38 +1,26 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-const shipsAvaibles = [
-  {
-    name: 'carrier',
-    amount: 1,
-    spaces: 4,
-    placed: false,
-    direction: 'horizontal',
-  },
-  {
-    name: 'cruisers',
-    amount: 3,
-    spaces: 3,
-    placed: false,
-    direction: 'horizontal',
-  },
-  {
-    name: 'submarine',
-    amount: 1,
-    spaces: 2,
-    placed: false,
-    direction: 'horizontal',
-  },
-];
+import { selectShip } from '../redux/actions/ship';
 
 const ShipsFleet = () => {
-  const selectShip = (ship) => {
-    console.log(ship);
+  const dispatch = useDispatch();
+  const states = useSelector((state) => state);
+  const handleClick = (ship) => {
+    dispatch(selectShip(ship));
+  };
+
+  const handleOrientation = () => {
+    console.log(states.ship, states);
   };
 
   return (
-    <div>
-      {shipsAvaibles.map((ship) => {
+    <div className='ships'>
+      <button type='button' onClick={handleOrientation}>
+        {!states.ship.direction ? 'horizontal' : 'vertical'}
+      </button>
+      {states.shipsAvaibles.map((ship) => {
         const { name, amount } = ship;
         const squares = new Array(ship.spaces).fill('space');
 
@@ -42,9 +30,13 @@ const ShipsFleet = () => {
               {name} x{amount}
             </h3>
             <div
-              className='ship'
-              onClick={() => selectShip(ship)}
-              onKeyPress={() => selectShip(ship)}
+              className={`ship ${
+                states.ship.name === name && states.ship.amount > 0
+                  ? 'is-selecting'
+                  : ''
+              } `}
+              onClick={() => handleClick(ship)}
+              onKeyPress={() => handleClick(ship)}
             >
               {squares.map((s, i) => (
                 // eslint-disable-next-line react/no-array-index-key
