@@ -5,21 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { decreaseShipAmount, selectShip } from '../redux/actions/ship';
 
-const ROWS = 10;
-const COLUMNS = 10;
-const BOARD = ROWS * COLUMNS;
-
-const PlayerBoard = ({ isHorizontal }) => {
+const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
   const states = useSelector((state) => state);
-  const [layout, setLayout] = useState(new Array(BOARD).fill('empty'));
+  const [layout, setLayout] = useState(new Array(ROWS * COLUMNS).fill('empty'));
   let x;
   let y;
 
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
-    x = index % 10;
-    y = Math.floor(index / 10);
+    x = index % ROWS;
+    y = Math.floor(index / COLUMNS);
 
     const i = y * 10 + x;
 
@@ -32,7 +28,7 @@ const PlayerBoard = ({ isHorizontal }) => {
         newLayout[i + j] = 'ship';
         setLayout(newLayout);
       } else {
-        newLayout[i + 10 * j] = 'ship';
+        newLayout[i + COLUMNS * j] = 'ship';
         setLayout(newLayout);
       }
     }
@@ -62,6 +58,8 @@ const PlayerBoard = ({ isHorizontal }) => {
 
 PlayerBoard.propTypes = {
   isHorizontal: PropTypes.bool.isRequired,
+  COLUMNS: PropTypes.number.isRequired,
+  ROWS: PropTypes.number.isRequired,
 };
 
 export default PlayerBoard;

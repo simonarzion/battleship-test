@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  useDispatch,
+  //  useSelector
+} from 'react-redux';
 import Game from './components/Game';
-import Welcome from './components/Welcome';
+// import Welcome from './components/Welcome';
 import setShipsAvaibles from './redux/actions/shipsAvaibles';
 
 const App = () => {
-  const status = useSelector((state) => state.status);
+  // const status = useSelector((state) => state.status);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +36,11 @@ const App = () => {
     );
   }, [dispatch]);
 
-  return <div>{status === 'welcome' ? <Welcome /> : <Game />}</div>;
+  return (
+    <div>
+      <Game />
+    </div>
+  );
 };
 
 export default App;
