@@ -13,19 +13,16 @@ const App = () => {
           name: 'carrier',
           amount: 1,
           spaces: 4,
-          isHorizontal: true,
         },
         {
           name: 'cruisers',
           amount: 3,
           spaces: 3,
-          isHorizontal: true,
         },
         {
           name: 'submarine',
           amount: 1,
           spaces: 2,
-          isHorizontal: true,
         },
       ]),
     );
