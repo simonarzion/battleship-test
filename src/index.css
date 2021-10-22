@@ -143,6 +143,10 @@ h3 {
   background-color: gray;
 }
 
+.square.ship.computer {
+  background-color: rgb(131, 90, 90);
+}
+
 .square.hit {
   background-color: orange;
 }
