@@ -14,9 +14,11 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
+    // Get coordinates
     x = index % ROWS;
     y = Math.floor(index / COLUMNS);
 
+    // Get array index clicked
     const i = y * 10 + x;
 
     const newLayout = [...layout];
@@ -24,6 +26,7 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
     for (let j = 0; j < states.ship?.spaces; j += 1) {
       if (states.ship.amount < 1) return;
 
+      // Check if the ship fits in the board
       if (isHorizontal && x + states.ship.spaces <= COLUMNS) {
         if (newLayout[i + j] === 'ship') return;
         newLayout[i + j] = 'ship';

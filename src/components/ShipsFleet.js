@@ -7,6 +7,7 @@ import { selectShip } from '../redux/actions/ship';
 const ShipsFleet = ({ setIsHorizontal, isHorizontal }) => {
   const dispatch = useDispatch();
   const states = useSelector((state) => state);
+
   const handleClick = (ship) => {
     dispatch(selectShip(ship));
   };

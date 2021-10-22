@@ -7,6 +7,8 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
   // eslint-disable-next-line no-unused-vars
   const [layout, setLayout] = useState(new Array(ROWS * COLUMNS).fill('empty'));
 
+  const randomNumber = Math.floor(Math.random() * 99);
+
   return (
     <div>
       <h3>Computer</h3>
