@@ -21,7 +21,6 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
     // Get array index clicked
     const i = y * 10 + x;
 
-    console.log(index, i);
     const newLayout = [...layout];
 
     for (let j = 0; j < states.ship?.spaces; j += 1) {

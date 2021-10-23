@@ -26,35 +26,80 @@ const computerShipsAvaibles = [
 
 const ComputerBoard = ({ COLUMNS, ROWS }) => {
   const [layout, setLayout] = useState(new Array(ROWS * COLUMNS).fill('empty'));
+  const newLayout = [...layout];
 
   useEffect(() => {
+    const checkIfShipFits = (isHorizontal, x, y, spaces, i) => {
+      for (let n = 0; n < spaces; n += 1) {
+        console.log(newLayout[i + n]);
+        if (isHorizontal) {
+          if (x + spaces < COLUMNS && newLayout[i + n] === 'ship') {
+            console.log('a');
+            newLayout[i + n] = 'ship';
+            return true;
+          }
+        }
+        if (!isHorizontal) {
+          if (y + spaces < ROWS && newLayout[i + COLUMNS * n] === 'ship') {
+            console.log('b');
+            newLayout[i + COLUMNS * n] = 'ship';
+            return true;
+          }
+        }
+      }
+      console.log('c');
+
+      return false;
+    };
+
     const generateComputerLayout = () => {
-      const newLayout = [...layout];
       const totalShips = computerShipsAvaibles;
       const boardSize = ROWS * COLUMNS;
 
       // Iterate over all types of ships
       for (let j = 0; j < totalShips.length; j += 1) {
         // Iterate over the amount of the specific ship
-        console.log('first loop');
         for (let k = 0; k < totalShips[j].amount; k += 1) {
-          console.log('second loop');
-
-          const i = generateRandomIndex(boardSize);
+          let i = generateRandomIndex(boardSize);
           const x = i % ROWS;
           const y = Math.floor(i / COLUMNS);
           const isHorizontal = generateRandomDirection();
-          // Iterate over the spaces of the specific ship
-          for (let n = 0; n < totalShips[j].spaces; n += 1) {
-            console.log('third loop');
 
-            if (isHorizontal) {
-              newLayout[i + n] = 'ship';
-            }
-            if (!isHorizontal) {
-              newLayout[i + COLUMNS * n] = 'ship';
-            }
+          while (!checkIfShipFits(isHorizontal, x, y, totalShips[j].spaces, i)) {
+            i = generateRandomIndex(100);
+            break;
           }
+
+          // if (isHorizontal) {
+          //   while (!(x + totalShips[j].spaces < COLUMNS) || newLayout[i + n] === 'ship') {
+          //     i = generateRandomIndex(boardSize);
+          //     console.log(i);
+          //     console.log('a');
+          //   }
+          //   newLayout[i + n] = 'ship';
+          // }
+          // if (!isHorizontal) {
+          //   while (!(y + totalShips[j].spaces < ROWS) || newLayout[i + COLUMNS * n] === 'ship') {
+          //     i = generateRandomIndex(boardSize);
+          //     console.log(i);
+          //     console.log('b');
+          //   }
+          //   newLayout[i + COLUMNS * n] = 'ship';
+          // }
+
+          // Iterate over the spaces of the specific ship
+
+          // while (true) {
+          //   let aux;
+          //   for (let n = 0; n < totalShips[j].spaces; n += 1) {
+          //     if (!(x + totalShips[j].spaces < COLUMNS) || newLayout[i + n] === 'ship') {
+          //       aux += 1;
+          //     }
+          //   }
+          //   if (aux === totalShips[j].spaces) {
+          //     break;
+          //   }
+          // }
         }
       }
 
@@ -87,3 +132,12 @@ ComputerBoard.propTypes = {
   ROWS: PropTypes.number.isRequired,
 };
 export default ComputerBoard;
+// if (isHorizontal && x + totalShips[j].spaces <= COLUMNS) {
+//   if (newLayout[i + n] === 'ship') return;
+//   newLayout[i + n] = 'ship';
+// }
+// if (!isHorizontal && y + totalShips[j].spaces <= ROWS) {
+//   if (newLayout[i + n] === 'ship') return;
+//   newLayout[i + COLUMNS * n] = 'ship';
+// }
+//
