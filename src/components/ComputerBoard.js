@@ -11,16 +11,19 @@ const computerShipsAvaibles = [
     name: 'carrier',
     amount: 1,
     spaces: 4,
+    color: 'red',
   },
   {
     name: 'cruisers',
     amount: 3,
     spaces: 3,
+    color: 'green',
   },
   {
     name: 'submarine',
     amount: 1,
     spaces: 2,
+    color: 'blue',
   },
 ];
 
@@ -29,27 +32,28 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
   const newLayout = [...layout];
 
   useEffect(() => {
-    const checkIfShipFits = (isHorizontal, x, y, spaces, i) => {
+    const checkIfShipFits = (isHorizontal, spaces, i) => {
+      let temp = 0;
+
+      const x = i % ROWS;
+      const y = Math.floor(i / COLUMNS);
+
       for (let n = 0; n < spaces; n += 1) {
-        console.log(newLayout[i + n]);
         if (isHorizontal) {
-          if (x + spaces < COLUMNS && newLayout[i + n] === 'ship') {
-            console.log('a');
+          if (x + spaces < COLUMNS && newLayout[i + n] !== 'ship') {
             newLayout[i + n] = 'ship';
-            return true;
+            temp += 1;
           }
         }
         if (!isHorizontal) {
-          if (y + spaces < ROWS && newLayout[i + COLUMNS * n] === 'ship') {
-            console.log('b');
+          if (y + spaces < ROWS && newLayout[i + COLUMNS * n] !== 'ship') {
             newLayout[i + COLUMNS * n] = 'ship';
-            return true;
+            temp += 1;
           }
         }
       }
-      console.log('c');
 
-      return false;
+      return temp === spaces;
     };
 
     const generateComputerLayout = () => {
@@ -61,13 +65,10 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
         // Iterate over the amount of the specific ship
         for (let k = 0; k < totalShips[j].amount; k += 1) {
           let i = generateRandomIndex(boardSize);
-          const x = i % ROWS;
-          const y = Math.floor(i / COLUMNS);
           const isHorizontal = generateRandomDirection();
 
-          while (!checkIfShipFits(isHorizontal, x, y, totalShips[j].spaces, i)) {
+          while (!checkIfShipFits(isHorizontal, totalShips[j].spaces, i)) {
             i = generateRandomIndex(100);
-            break;
           }
 
           // if (isHorizontal) {
