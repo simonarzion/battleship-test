@@ -26,29 +26,15 @@ const Game = () => {
   return (
     <div className='welcome'>
       <div className='welcome__inner'>
-        <PlayerBoard
-          isHorizontal={isHorizontal}
-          ROWS={ROWS}
-          COLUMNS={COLUMNS}
-        />
+        <PlayerBoard isHorizontal={isHorizontal} ROWS={ROWS} COLUMNS={COLUMNS} />
 
         {status === 'start' ? (
           <ComputerBoard ROWS={ROWS} COLUMNS={COLUMNS} />
         ) : (
           <div className='welcome__start'>
-            <input
-              type='text'
-              value={userInput}
-              onChange={handleChange}
-              placeholder='Username'
-              className='username__input'
-            />
+            <input type='text' value={userInput} onChange={handleChange} placeholder='Username' className='username__input' />
 
-            <button
-              type='button'
-              className='start__button'
-              onClick={() => dispatch(setStatus('start'))}
-            >
+            <button type='button' className='start__button' onClick={() => dispatch(setStatus('start'))}>
               Start
             </button>
           </div>
@@ -56,19 +42,14 @@ const Game = () => {
       </div>
 
       {status === 'start' ? (
-        <div>
+        <div className='game__actions'>
           <h4>Playing: {turn ? `${username}` : 'Computer'}</h4>
         </div>
       ) : (
         ''
       )}
 
-      {status === 'welcome' && (
-        <ShipsFleet
-          setIsHorizontal={setIsHorizontal}
-          isHorizontal={isHorizontal}
-        />
-      )}
+      {status === 'welcome' && <ShipsFleet setIsHorizontal={setIsHorizontal} isHorizontal={isHorizontal} />}
     </div>
   );
 };

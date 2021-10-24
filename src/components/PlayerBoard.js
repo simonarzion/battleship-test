@@ -6,12 +6,11 @@ import { PropTypes } from 'prop-types';
 import { decreaseShipAmount, selectShip } from '../redux/actions/ship';
 
 const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
-  const states = useSelector((state) => state);
+  const { status, user, ship } = useSelector((state) => state);
   const [layout, setLayout] = useState(new Array(ROWS * COLUMNS).fill('empty'));
+  const dispatch = useDispatch();
   let x;
   let y;
-
-  const dispatch = useDispatch();
 
   const handleClick = (index) => {
     // Get coordinates
@@ -21,16 +20,17 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
     // Get array index clicked
     const i = y * 10 + x;
 
+    // Create a copy of layout state
     const newLayout = [...layout];
 
-    for (let j = 0; j < states.ship?.spaces; j += 1) {
-      if (states.ship.amount < 1) return;
+    for (let j = 0; j < ship?.spaces; j += 1) {
+      if (ship.amount < 1) return;
 
       // Check if the ship fits in the board
-      if (isHorizontal && x + states.ship.spaces <= COLUMNS) {
+      if (isHorizontal && x + ship.spaces <= COLUMNS) {
         if (newLayout[i + j] === 'ship') return;
         newLayout[i + j] = 'ship';
-      } else if (!isHorizontal && y + states.ship.spaces <= ROWS) {
+      } else if (!isHorizontal && y + ship.spaces <= ROWS) {
         if (newLayout[i + COLUMNS * j] === 'ship') return;
         newLayout[i + COLUMNS * j] = 'ship';
       } else {
@@ -44,8 +44,8 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
   };
 
   return (
-    <div>
-      {states.status !== 'welcome' && <h3>{states.user}</h3>}
+    <div className='board__container'>
+      {status !== 'welcome' && <h3>{user}</h3>}
 
       <div className='board'>
         {layout.map((square, index) => (

@@ -35,7 +35,10 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
     });
 
     const checkIfShipFits = (isHorizontal, spaces, i) => {
+      // temp var for returning boolean
       let temp = 0;
+
+      // Get coordinates
       const x = i % ROWS;
       const y = Math.floor(i / COLUMNS);
 
@@ -66,6 +69,8 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
           let i = generateRandomIndex(boardSize);
           const isHorizontal = generateRandomDirection();
 
+          // Check if the ships fits in the board
+          // If not, generates a new place
           while (!checkIfShipFits(isHorizontal, totalShips[j].spaces, i)) {
             i = generateRandomIndex(boardSize);
           }
@@ -83,10 +88,8 @@ const ComputerBoard = ({ COLUMNS, ROWS }) => {
     generateComputerLayout();
   }, [COLUMNS, ROWS]);
 
-  Math.floor(Math.random() * (COLUMNS * ROWS));
-
   return (
-    <div>
+    <div className='board__container'>
       <h3>Computer</h3>
       <div className='board'>
         {layout.map((square, index) => (
@@ -105,35 +108,5 @@ ComputerBoard.propTypes = {
   COLUMNS: PropTypes.number.isRequired,
   ROWS: PropTypes.number.isRequired,
 };
+
 export default ComputerBoard;
-
-// if (isHorizontal) {
-//   while (!(x + totalShips[j].spaces < COLUMNS) || newLayout[i + n] === 'ship') {
-//     i = generateRandomIndex(boardSize);
-//     console.log(i);
-//     console.log('a');
-//   }
-//   newLayout[i + n] = 'ship';
-// }
-// if (!isHorizontal) {
-//   while (!(y + totalShips[j].spaces < ROWS) || newLayout[i + COLUMNS * n] === 'ship') {
-//     i = generateRandomIndex(boardSize);
-//     console.log(i);
-//     console.log('b');
-//   }
-//   newLayout[i + COLUMNS * n] = 'ship';
-// }
-
-// Iterate over the spaces of the specific ship
-
-// while (true) {
-//   let aux;
-//   for (let n = 0; n < totalShips[j].spaces; n += 1) {
-//     if (!(x + totalShips[j].spaces < COLUMNS) || newLayout[i + n] === 'ship') {
-//       aux += 1;
-//     }
-//   }
-//   if (aux === totalShips[j].spaces) {
-//     break;
-//   }
-// }
