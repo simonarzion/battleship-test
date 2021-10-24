@@ -17,37 +17,29 @@ const ShipsFleet = ({ setIsHorizontal, isHorizontal }) => {
   };
 
   return (
-    <div className='ships'>
-      <button
-        className='switch__button'
-        type='button'
-        onClick={handleOrientation}
-      >
+    <div className='fleet-container'>
+      <button className='switch__button' type='button' onClick={handleOrientation}>
         {isHorizontal ? 'switch to vertical' : 'switch to horizontal'}
       </button>
 
-      <div className='ships__container'>
+      <div className='fleet'>
         {states.shipsAvaibles.map((ship) => {
           const { name, amount } = ship;
           const squares = new Array(ship.spaces).fill('space');
 
           return (
-            <div key={name} className='ship__container'>
-              <h3 className='ship__name'>
+            <div key={name} className='fleet__ship-container'>
+              <h3 className='fleet__ship-name'>
                 {name} x{amount}
               </h3>
               <div
-                className={`ship ${
-                  states.ship.name === name && states.ship.amount > 0
-                    ? 'is-selecting'
-                    : ''
-                } ${!isHorizontal ? 'vertical' : ''}`}
+                className={`fleet__ship ${states.ship.name === name && states.ship.amount > 0 ? 'is-selecting' : ''} ${!isHorizontal ? 'vertical' : ''}`}
                 onClick={() => handleClick(ship)}
                 onKeyPress={() => handleClick(ship)}
               >
                 {squares.map((s, i) => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <div key={i} className='ship__square' />
+                  <div key={i} className='fleet__ship-square' />
                 ))}
               </div>
             </div>

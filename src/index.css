@@ -25,6 +25,10 @@ h3 {
 
 /* WELCOME */
 
+.start__button-container {
+  text-align: center;
+}
+
 .start__button {
   padding: 10px 20px;
   border: 2px solid crimson;
@@ -61,7 +65,7 @@ h3 {
 
 /* SHIP */
 
-.ships {
+.fleet-container {
   text-align: center;
   padding: 20px 0;
 }
@@ -76,47 +80,48 @@ h3 {
   color: #fff;
 }
 
-.ships__container {
+.fleet {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-.ship__container {
-  padding: 5px 0;
+.fleet__ship-container {
   margin: 10px;
 }
 
-.ship__square {
+.fleet__ship-square {
   width: 40px;
   height: 40px;
   background-color: #4f86b3;
   border: 1px solid #ffffff2a;
 }
 
-.ship {
+.fleet__ship {
   background-color: #88a7c0;
+  padding: 20px;
+  border-radius: 5px;
   width: fit-content;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.ship.vertical {
+.fleet__ship.vertical {
   flex-direction: column;
 }
 
-.ship.is-selecting {
+.fleet__ship.is-selecting {
   background-color: #bad1e4;
 }
 
-.ship:hover {
+.fleet__ship:hover {
   background-color: #bad1e4;
   cursor: pointer;
 }
 
-.ship__name {
+.fleet__ship-name {
   text-transform: capitalize;
   padding-bottom: 10px;
 }

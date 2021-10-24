@@ -50,12 +50,7 @@ const PlayerBoard = ({ isHorizontal, COLUMNS, ROWS }) => {
       <div className='board'>
         {layout.map((square, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <div
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            className={`square ${square}`}
-            onClick={() => handleClick(index)}
-          />
+          <div key={index} className={`square ${square}`} onClick={() => handleClick(index)} />
         ))}
       </div>
     </div>
