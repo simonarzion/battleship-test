@@ -30,15 +30,21 @@ const Game = () => {
         {status === 'start' ? (
           <ComputerBoard ROWS={ROWS} COLUMNS={COLUMNS} />
         ) : (
-          <div className='welcome__start'>
-            <input type='text' value={userInput} onChange={handleChange} placeholder='Username' className='username__input' />
+          <div className='username__input-container'>
+            <input id='firstname' value={userInput} onChange={handleChange} className='username__input' type='text' placeholder=' ' />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label htmlFor='firstname' className='username__input-placeholder'>
+              Username
+            </label>
           </div>
         )}
       </div>
 
       {status === 'start' && (
         <div className='game__actions'>
-          <h4>Playing: {turn ? `${user}` : 'Computer'}</h4>
+          <h4>
+            Playing: <span>{turn ? `${user}` : 'Computer'}</span>
+          </h4>
         </div>
       )}
 

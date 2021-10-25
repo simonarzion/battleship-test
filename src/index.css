@@ -1,13 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap');
+
+/* GENERAL STYLES */
+
+:root {
+  --primary: #303245;
+  --secondary: #808097;
+  --red: #dc143c;
+  --aqua: #4f86b3;
+  --white: #fff;
+  --white-light: #bbb;
+  --gray: #777;
+}
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--white);
 }
 
-/* GENERAL STYLES */
+body {
+  background-color: var(--primary);
+}
 
 .title {
   text-align: center;
@@ -30,13 +45,21 @@ h3 {
 }
 
 .start__button {
-  padding: 10px 20px;
-  border: 2px solid crimson;
-  color: crimson;
+  padding: 15px 25px;
+  border: 3px solid var(--red);
+  color: var(--red);
+  font-weight: 700;
   font-size: 1.2rem;
   background-color: transparent;
   cursor: pointer;
+  border-radius: 5px;
   text-transform: uppercase;
+  transition: background 200ms, color 200ms;
+}
+
+.start__button:hover {
+  background-color: var(--red);
+  color: var(--white);
 }
 
 .welcome__inner {
@@ -55,10 +78,55 @@ h3 {
   flex-direction: column;
 }
 
+.username__input-container {
+  height: 50px;
+  position: relative;
+}
+
 .username__input {
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 1.2rem;
+  background-color: var(--secondary);
+  border-radius: 5px;
+  border: 0;
+  box-sizing: border-box;
+  color: var(--white);
+  font-size: 20px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+
+.username__input:focus ~ .cut,
+.username__input:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.username__input-placeholder {
+  color: var(--white-light);
+  font-family: sans-serif;
+  left: 10px;
+  pointer-events: none;
+  position: absolute;
+  transition: transform 200ms, color 200ms, background 200ms;
+  top: 50%;
+  transform: translate(0, -50%);
+  background-color: var(--secondary);
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.username__input:focus ~ .username__input-placeholder,
+.username__input:not(:placeholder-shown) ~ .username__input-placeholder {
+  transform: translateY(-40px) translateX(-10px) scale(0.8);
+  background-color: var(--primary);
+}
+
+.username__input:not(:placeholder-shown) ~ .username__input-placeholder {
+  color: var(--white);
+}
+
+.username__input:focus ~ .username__input-placeholder {
+  color: var(--white);
 }
 
 /* END WELCOME */
@@ -71,13 +139,15 @@ h3 {
 }
 
 .switch__button {
-  padding: 10px 20px;
+  padding: 10px;
+  border-radius: 5px;
   text-transform: capitalize;
-  font-weight: 700;
+  font-weight: 500;
   background-color: crimson;
   border: 0;
   cursor: pointer;
-  color: #fff;
+  font-size: 1.2rem;
+  color: var(--white);
 }
 
 .fleet {
@@ -94,8 +164,8 @@ h3 {
 .fleet__ship-square {
   width: 40px;
   height: 40px;
-  background-color: #4f86b3;
-  border: 1px solid #ffffff2a;
+  background-color: var(--aqua);
+  border: 1px solid var(--white-light);
 }
 
 .fleet__ship {
@@ -142,22 +212,27 @@ h3 {
 .square {
   width: 40px;
   height: 40px;
-  background-color: #f3f3f3;
-  border: 1px solid #a0a0a0;
+  background-color: var(--secondary);
+  border: 1px solid var(--white-light);
   cursor: crosshair;
+  transition: background 100ms;
 }
 
 .square:hover {
   background-color: #a0a0a0;
-  border: 1px solid #a0a0a0;
 }
 
 .square.ship {
-  background-color: gray;
+  background-color: #808080;
 }
 
 .square.ship.computer {
-  background-color: rgb(136, 102, 28);
+  /* Only for testing */
+  background-color: #6464aa;
+}
+
+.square.computer:hover {
+  background-color: #68687e;
 }
 
 .square.hit {
@@ -198,4 +273,9 @@ h3 {
 
 .game__actions {
   text-align: center;
+  text-transform: capitalize;
+}
+
+.game__actions span {
+  color: #727272;
 }
